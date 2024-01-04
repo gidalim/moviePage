@@ -4,25 +4,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Typhon's Movie</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+<script src=".apikey.js"></script>
 
 <body>
-  <nav>
-    <ul id="test">
-      <li>첫 번째 메뉴</li>
-      <li>두 번쨰 메뉴</li>
-      <li>세 번째 메뉴</li>
-    </ul>
+  <header>
+    <svg>
+    </svg>
+    <div class id="headcomment">
+      <div>페이지새로고침 버튼</div>
+      <div>day/night_mode 설정</div>
+    </div>
+  </header>
+  <div id="article"> ㅁㄴㅇㅁㄴㅇㅁㄴㅇ</div>
+  <section>
     <main>
       메인 영역의 제목입니다.
       <h1> 테스트입니다</h1>
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Fountain_pen_writing_%28literacy%29.jpg/220px-Fountain_pen_writing_%28literacy%29.jpg"
-        alt="이미지없음">
+      <img src="" alt="이미지없음">
     </main>
-    <footer>Welcome to Typhon's Movie Party! .</footer>
-  </nav>
+    <div class="moviebox">
+      <div class="postbox" id="post">
+        <div class="card" id="card">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Fountain_pen_writing_%28literacy%29.jpg/220px-Fountain_pen_writing_%28literacy%29.jpg"
+            class="movieImage" alt="...">
+          <div class="postBody" id="postingBox">
+            <h5 class="movieName" id="postingName">${title}</h5>
+            <p class="movieContents" id="contentsName">${content}</p>
+            <p class="movieValues" id="valuesName">${value}</p>
+          </div>
+          <p class="openDate" id="releaseDate">${date}</p>
+          <div>
+          </div>`;
+  </section>
+  <footer>Welcome to Typhon's Movie Party! .</footer>
+
+
+  <script src="app.js"></script>
 </body>
 
 </html>
