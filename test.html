@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'api_key'
+      }
+    };
+
+
+    // fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1')
+    //   .then(response => response.json())
+    //   .then(response => console.log(response))
+    //   .then(response => {
+
+    //     const movieResult = response.results
+
+    //     // console.log(movieResult);
+    //     return movieResult;
+    //   })
+    //   .catch(err => console.error(err));
+
+
+
+    // const moviePage1 = movieResult.slice(0, 10)
+    // console.log(moviePage1);
+
+
+
+    const loadingMovieData = async () => {
+      try {
+        const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1')
+        const dataLoading = await response.json();
+        const movieResult = dataLoading.results;
+        console.log(movieResult);
+
+        return movieResult;
+      }
+      catch (err) {
+        console.error(err);
+        throw err;
+      }
+
+    };
+    const movieDataSet = async () => {
+      try {
+        const movieData = await loadingMovieData();
+
+        console.log("fetch에서 async/await를 사용해 불러오는 중", movieData);
+      } catch (error) {
+        console.error("loadingMovieData 함수 고장남", error);
+      }
+    };
+
+    movieDataSet(); // 최종 확인 완료.
+
+
+    // for (let i = 0; i < movieData.length; ++i) {
+    //   const moviePage1 = movieData.slice(i, i + 10) //이 부분 let이 아닌 const로 작성해야하는 거 같음
+    //   console.log(moviePage1);// 0번부터 9번까지만 사용 할 것이므로 확인해야함
+    // }
+    //   }
+    // }
+
+
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

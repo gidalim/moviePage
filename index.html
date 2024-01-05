@@ -7,7 +7,7 @@
   <title>Typhon's Movie</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<script src=".apikey.js"></script>
+<!-- <script src=".apikey.js"></script> -->
 
 <body>
   <header>
@@ -26,15 +26,15 @@
       <img src="" alt="이미지없음">
     </main>
     <div class="moviebox">
-      <div class="postbox" id="post">
-        <div class="card" id="card">
+      <div class="postbox" id="movieId">
+        <div class="card">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Fountain_pen_writing_%28literacy%29.jpg/220px-Fountain_pen_writing_%28literacy%29.jpg"
             class="movieImage" alt="...">
-          <div class="postBody" id="postingBox">
-            <h5 class="movieName" id="postingName">${title}</h5>
-            <p class="movieContents" id="contentsName">${content}</p>
-            <p class="movieValues" id="valuesName">${value}</p>
+          <div class="postBody">
+            <h5 class="movieName">${title}</h5>
+            <p class="movieContents">${content}</p>
+            <p class="movieValues">${value}</p>
           </div>
           <p class="openDate" id="releaseDate">${date}</p>
           <div>
@@ -43,7 +43,7 @@
   <footer>Welcome to Typhon's Movie Party! .</footer>
 
 
-  <script src="app.js"></script>
+  <script type="module" src="./app.js"></script>
 </body>
 
 </html>
