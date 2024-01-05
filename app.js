@@ -10,41 +10,15 @@ const options = {
   }
 };
 
-class MovieBox { //생성자함수
-  constructor(movieId, image, title, overView, value, date) {
-    this.movieId = movieId;
-    this.image = image;
-    this.title = title;
-    this.overView = overView;
-    this.value = value;
-    this.date = date;
-  }
-
-  creatCard() { //id가 점진적으로 늘어날 때 구분이 가능하게끔 기능을 넣어줄 것
-    return `
-    <div class="postbox" id="${this.movieId}"> 
-      <div class="card">
-        <img src="${this.image}"class="movieImage" alt="...">
-        <div class="postBody">
-          <h5 class="movieName">${this.title}</h5>
-          <p class="movieContents" >${this.overView}</p>
-          <p class="movieValues">${this.value}</p>
-        </div>
-      <p class="releaseDate">${this.date}</p>
-      <div>
-    </div>`;
-  }
-}
-
-
 
 // 영화정보
 const loadingMovieData = async () => {
   try {
-    const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1')
+    const response = await fetch('https://api.themoviedb.org/3/movie/top_rated', options)
+    // console.log(response);
     const dataLoading = await response.json();
     const movieResult = dataLoading.results;
-    console.log(movieResult);
+    // console.log(movieResult); //fetch 전송 확인용
 
     return movieResult;
   }
@@ -54,74 +28,118 @@ const loadingMovieData = async () => {
   }
 
 };
+// loadingMovieData();
+//확인용
+
+//생성자함수
+class MovieBox {
+  constructor(id, overView, poster_path, release_date, title, vote_average) {
+    this.id = id; // id
+    this.overView = overView; // overview
+    this.poster_path = `https://image.tmdb.org/t/p/w500${poster_path}`; // poster_path
+    this.release_date = `release Date  ${release_date}`; // release_date
+    this.title = title; // title
+    this.vote_average = `평점   ${vote_average}`; // vote_average
+  }
+  createCard() { //id가 점진적으로 늘어날 때 구분이 가능하게끔 기능을 넣어줄 것
+    return `
+    <div class="postbox" id="${this.id}"> 
+      <div class="card">
+        <img src="${this.poster_path}"class="movieImage" alt="...">
+        <div class="postBody">
+          <h5 class="movieName">${this.title}</h5>
+          <p class="movieContents" >${this.overView}</p>
+          <p class="movieValues">${this.vote_average}</p>
+          <p class="releaseDate">${this.release_date}</p>
+        </div>
+      </div>
+    </div>`;
+  }
+
+};
+
 const movieDataSet = async () => {
   try {
     const movieData = await loadingMovieData();
-    const moviePage1 = movieData.slice(0, 10);
-    console.log("fetch에서 async/await를 사용해 불러오는 중", movieData);
-    console.log("10개를 잘라내서 추출함", moviePage1);
-    console.log("0번째 배열의 4번 키를 확인함", moviePage1[0].key4);
-    
-    const movieIdArray = moviePage1.map(movieiD => movieiD[4]);
-    console.log("4번째 key의 value를 추출중", movieIdArray);
-    
+    // console.log("fetch에서 async/await를 사용해 불러오는 중", movieData); //확인용
 
-    // const extractedValues = moviePage1.map(movie => ({
-    //   movieId: movie.results[0].key4, // 제목
-    //   overView: movie.results[0].key7, // 요약
-    //   image: movie.results[0].key9, // 이미지링크
-    //   date: movie.results[0].key10, // 개봉일자
-    //   title: movie.results[0].key11, // 제목
-    //   value: movie.results[0].key12, // 평점
-    // }));
+    const movieBoxes = movieData.map((movie) => {
+      return new MovieBox(
+        movie.id,
+        movie.overview,
+        movie.poster_path,
+        movie.release_date,
+        movie.title,
+        movie.vote_average
+      );
+    });
+    // console.log(movieBoxes); // 데이터 잘 추출했는지 확인용
 
-      // console.log('MovieBox 객체 배열', extractedValues);
-      
+
+    // movieBoxes.forEach((movieBox) => {
+    //   const movieContainer = document.getElementById('movieContainer');
+    //   movieContainer.innerHTML += movieBox.createCard(); **innerHTML공부
+    //   // console.log(movieBox); //박스 잘 만들어 지는지 확인용
+
+    //   const cardElement = document.getElementById(movieBox.id);
+    //   console.log(cardElement); //클릭이벤트 확인용입니다.
+
+    //   cardElement.addEventListener('click', (event) => {
+    //     const clickedCard = event.target.closest('.postbox');
+    //     if (clickedCard) {
+    //       console.log(`클릭 이벤트가 작동중인지 확인중입니다. ID : ${movieBox.id}`);
+    //       alert(`카드의 ID는 ${movieBox.id}입니다!`);
+    //     }
+    //   });
+    // });
+
+    movieBoxes.forEach((movieBox) => {
+      const movieContainer = document.getElementById('movieContainer');
+      const cardHtml = movieBox.createCard();
+
+      movieContainer.insertAdjacentHTML('beforeend', cardHtml);
+
+      const cardElement = document.getElementById(movieBox.id);
+      cardElement.addEventListener('click', (event) => {
+        const clickedCard = event.target.closest('.postbox');
+        if (clickedCard) {
+          console.log(`클릭 이벤트가 작동중인지 확인중입니다. ID : ${movieBox.id}`);
+          alert(`카드의 ID는 ${movieBox.id}입니다!`);
+        }
+      });
+    });
+
+    //검색창구현
+    const searchMovie = document.getElementById("searchMovie");
+    const searchBtn = document.getElementById("searchBtn");
+
+    searchBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const searchTerm = searchMovie.value.toLowerCase();
+      //일괄 소문자로 변경합니다
+      movieBoxes.forEach((movieBox) => {
+        const cardElement = document.getElementById(movieBox.id);
+        const title = movieBox.title.toLowerCase();
+
+        if (title.includes(searchTerm)) {
+          cardElement.style.display = 'block'; // 맞는 경우 보이게 함 근데 이렇게 하면 flex가 풀리네,,
+        } else {
+          cardElement.style.display = 'none'; // 아닌 경우 숨김
+        }
+      });
+    });
 
   } catch (error) {
-    console.error("loadingMovieData 함수 고장남", error);
+    console.error("loadingMovieData 함수 고장남", error); //확인용
   }
 };
 
-movieDataSet(); //함수 실행하여 조건확인
+movieDataSet();
 
 
-//     const moviePage1 = movieData.slice(i, i + 10) //이 부분 let이 아닌 const로 작성해야하는 거 같음.
-//     return moviePage1;
-//     console.log(moviePage1);// 0번부터 9번까지만 사용 할 것이므로 확인해야함
-
-      // result
-      // let storage = [];
-
-
-      // fetch에서 데이터를 받아와야함 -> 
-      // let 아이디:row['movieId'],
-      // let 이미지 - fetch의 이미지 주소와 링크
-      // let 제목: row['title'],
-      // let 요약: row['overView'],
-      // let 평점: row['value'],
-      // let 개봉일자: row['date'],
-
-
-      // movieID: row['movieId'],
-      // image: row['movieImage'],
-      // title: row['title'],
-      // overView: row['overView'],
-      // value: row['value'],
-      // date: row['date'],
-
-    // let movie_box = new MovieBox(movieId, image, title, content, value, date).creatCard()
-
-
-
-//생성자 함수로 10개를 만들어내고 싶다.
-//map으로 만들면 될듯.
-
-
-
-
-
-
+// 1. movieData를 반복문으로 순환하기
+// 2. 순환한 결과 아이템각각 으로 class를 인스턴스화 한다.
+// 3. createCard의 반환값을 부모태그에 추가해준다. (innerHTML)
 
 // //기타정보
 // fetch('https://api.themoviedb.org/3/configuration')

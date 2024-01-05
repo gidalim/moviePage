@@ -10,23 +10,17 @@
 <!-- <script src=".apikey.js"></script> -->
 
 <body>
-  <header>
-    <svg>
-    </svg>
-    <div class id="headcomment">
-      <div>페이지새로고침 버튼</div>
-      <div>day/night_mode 설정</div>
-    </div>
+  <header> React_4기 6조 박강토
+    <!-- <button id="refresh_button">refresh</button>
+    <button id="day_night">day/night_mode</button> -->
   </header>
-  <div id="article"> ㅁㄴㅇㅁㄴㅇㅁㄴㅇ</div>
+  <form class="movieSearch">
+    <input type="text" id="searchMovie" placeholder="영화 제목을 입력하세요">
+    <button id="searchBtn">검색</button>
+  </form>
   <section>
-    <main>
-      메인 영역의 제목입니다.
-      <h1> 테스트입니다</h1>
-      <img src="" alt="이미지없음">
-    </main>
-    <div class="moviebox">
-      <div class="postbox" id="movieId">
+    <div class="moviebox" id="movieContainer">
+      <!-- <div class="postbox">
         <div class="card">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Fountain_pen_writing_%28literacy%29.jpg/220px-Fountain_pen_writing_%28literacy%29.jpg"
@@ -37,8 +31,9 @@
             <p class="movieValues">${value}</p>
           </div>
           <p class="openDate" id="releaseDate">${date}</p>
-          <div>
-          </div>`;
+        </div>
+      </div> -->
+    </div>
   </section>
   <footer>Welcome to Typhon's Movie Party! .</footer>
 
