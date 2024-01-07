@@ -1,6 +1,17 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+
 import { config } from './apikey.js';
 // console.log(config); //apikey체크용
 const AccessToken = config.accessToken;
+
+
+
+
+
+
+
+const app = initializeApp(firebaseConfig);
+
 
 const options = {
   method: 'GET',
