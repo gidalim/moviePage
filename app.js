@@ -1,16 +1,24 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-
 import { config } from './apikey.js';
 // console.log(config); //apikey체크용
 const AccessToken = config.accessToken;
+const firebaseAPIKEY = config.firebaseAPI_KEY;
+// console.log(firebaseAPIKEY); //firebase 호스팅 체크
 
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 
+const firebaseConfig = {
+  apiKey: firebaseAPIKEY,
+  authDomain: "mymovie-9fbbd.firebaseapp.com",
+  projectId: "mymovie-9fbbd",
+  storageBucket: "mymovie-9fbbd.appspot.com",
+  messagingSenderId: "977020634886",
+  appId: "1:977020634886:web:4f18ccd6a8c7fd12424087"
+};
 
-
-
-
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
 
 
 const options = {
