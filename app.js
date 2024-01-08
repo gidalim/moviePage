@@ -1,3 +1,7 @@
+// 파이어 베이스를 통해 호스팅을 진행했습니다
+// https://mymovie-9fbbd.firebaseapp.com/ 
+
+
 import { config } from './apikey.js';
 // console.log(config); //apikey체크용
 const AccessToken = config.accessToken;
@@ -128,7 +132,7 @@ const movieDataSet = async () => {
         const title = movieBox.title.toLowerCase();
 
         if (title.includes(searchTerm)) {
-          cardElement.style.display = 'block'; // 맞는 경우 보이게 함 근데 이렇게 하면 flex가 풀리네,,
+          cardElement.style.display = 'block'; // 맞는 경우 보이게 함
         } else {
           cardElement.style.display = 'none'; // 아닌 경우 숨김
         }
@@ -142,16 +146,3 @@ const movieDataSet = async () => {
 
 movieDataSet();
 
-
-    // 101번째 줄 forEach문의 
-    
-    // movieBoxes.forEach((movieBox) => {
-    //   const movieContainer = document.getElementById('movieContainer');
-    //   movieContainer.innerHTML += movieBox.createCard(); 
-
-    // **innerHTML공부 : 기존의 innerHTML += 같은 경우 요소가 변경하며 추가하는 방식이고 insertAdjacentHTML 메서드 같은 경우는
-    // insertAdjacentHTML(위치, text(여기서는 함수 movieBox.createCard를 실행하는 것으로 실행했습니다.)) 와 같이 선언되어 
-    // beforeend : 즉 요소 바로 안에서 마지막 children에 위치했습니다. movieContainer는 영화 카드슬롯 전체를 의미하며
-    // 그 마지막 카드 바로 뒤에 html을 추가'만' 하는 것으로 코드를 변경한 셈이 되는 것입니다.
-    // 만약 innerHTML을 그대로 사용한다면, 새로운 movieBox.createCard이 실행 될 때, 이벤트 리스너가 제거되고 
-    // 추가된 맨 마지막 movieBox.createCard의 클릭 이벤트만 활성화 될 것입니다. (실제로 그랬습니다.)
