@@ -95,30 +95,17 @@ const movieDataSet = async () => {
     // console.log(movieBoxes); // 데이터 잘 추출했는지 확인용
 
 
-    // movieBoxes.forEach((movieBox) => {
-    //   const movieContainer = document.getElementById('movieContainer');
-    //   movieContainer.innerHTML += movieBox.createCard(); **innerHTML공부
-    //   // console.log(movieBox); //박스 잘 만들어 지는지 확인용
 
-    //   const cardElement = document.getElementById(movieBox.id);
-    //   console.log(cardElement); //클릭이벤트 확인용입니다.
 
-    //   cardElement.addEventListener('click', (event) => {
-    //     const clickedCard = event.target.closest('.postbox');
-    //     if (clickedCard) {
-    //       console.log(`클릭 이벤트가 작동중인지 확인중입니다. ID : ${movieBox.id}`);
-    //       alert(`카드의 ID는 ${movieBox.id}입니다!`);
-    //     }
-    //   });
-    // });
 
     movieBoxes.forEach((movieBox) => {
       const movieContainer = document.getElementById('movieContainer');
       const cardHtml = movieBox.createCard();
-
       movieContainer.insertAdjacentHTML('beforeend', cardHtml);
-
+      // console.log(movieBox); //박스 잘 만들어 지는지 확인용
       const cardElement = document.getElementById(movieBox.id);
+      // console.log(cardElement); //클릭이벤트 확인용입니다.
+
       cardElement.addEventListener('click', (event) => {
         const clickedCard = event.target.closest('.postbox');
         if (clickedCard) {
@@ -156,12 +143,15 @@ const movieDataSet = async () => {
 movieDataSet();
 
 
-// 1. movieData를 반복문으로 순환하기
-// 2. 순환한 결과 아이템각각 으로 class를 인스턴스화 한다.
-// 3. createCard의 반환값을 부모태그에 추가해준다. (innerHTML)
+    // 101번째 줄 forEach문의 
+    
+    // movieBoxes.forEach((movieBox) => {
+    //   const movieContainer = document.getElementById('movieContainer');
+    //   movieContainer.innerHTML += movieBox.createCard(); 
 
-// //기타정보
-// fetch('https://api.themoviedb.org/3/configuration')
-//   .then(response => response.json())
-//   .then(response => console.log(response))
-//   .catch(err => console.error(err));
+    // **innerHTML공부 : 기존의 innerHTML += 같은 경우 요소가 변경하며 추가하는 방식이고 insertAdjacentHTML 메서드 같은 경우는
+    // insertAdjacentHTML(위치, text(여기서는 함수 movieBox.createCard를 실행하는 것으로 실행했습니다.)) 와 같이 선언되어 
+    // beforeend : 즉 요소 바로 안에서 마지막 children에 위치했습니다. movieContainer는 영화 카드슬롯 전체를 의미하며
+    // 그 마지막 카드 바로 뒤에 html을 추가'만' 하는 것으로 코드를 변경한 셈이 되는 것입니다.
+    // 만약 innerHTML을 그대로 사용한다면, 새로운 movieBox.createCard이 실행 될 때, 이벤트 리스너가 제거되고 
+    // 추가된 맨 마지막 movieBox.createCard의 클릭 이벤트만 활성화 될 것입니다. (실제로 그랬습니다.)
