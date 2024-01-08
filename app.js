@@ -64,7 +64,7 @@ class MovieBox {
     this.title = title; // title
     this.vote_average = `평점   ${vote_average}`; // vote_average
   }
-  createCard() { //id가 점진적으로 늘어날 때 구분이 가능하게끔 기능을 넣어줄 것
+  createCard() {
     return `
     <div class="postbox" id="${this.id}"> 
       <div class="card">
