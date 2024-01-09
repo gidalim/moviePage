@@ -1,0 +1,170 @@
+/* grid 연습중 파일입니다. 미적용 상태입니다. */
+
+* {
+  box-sizing: border-box;
+}
+
+header {
+  display: grid;
+  grid-area: header;
+  background-color: #fffefb;
+  justify-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 3rem;
+  font-size: 30px;
+  font-style: inherit;
+  color: #00668c;
+}
+
+/* 검색헤더 */
+.movieHeader {
+  display: grid;
+  grid-area: form;
+  grid-template-columns: 20rem 5rem;
+  grid-template-rows: 2.5rem;
+  background-color: #313d44;
+  align-items: center;
+  justify-content: center;
+  /* width: 100vw;
+  height: 3rem; */
+}
+
+/* 영화 검색란 */
+#searchMovie {
+  display: grid;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  background-color: #f5f4f1;
+  display: grid;
+  grid-template-columns: repeat(4, 2.5fr);
+  grid-template-rows: 100px auto auto 30px;
+  grid-template-areas:
+    "header header"
+    "form form"
+    "main main"
+    "footer footer";
+  width: 100vw;
+  height: 100vh;
+}
+
+/* aside {
+  grid-area: side;
+  background-color: #ff9d00;
+} */
+
+main {
+  grid-area: main;
+}
+
+/* 하단부 copyright */
+footer {
+  display: grid;
+  grid-area: footer;
+  justify-content: space-around;
+  align-self: flex-end;
+  padding: 0 1rem 1rem 0;
+}
+
+section {
+  display: grid;
+  grid-auto-rows: auto;
+  justify-content: space-evenly;
+}
+
+/* 영화 박스가 들어감 */
+
+.moviebox {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: space-around;
+  grid-gap: 1rem;
+}
+
+/* 카드 메인 틀 */
+.postbox {
+  background-color: #b6ccd8;
+  align-items: center;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-width: 620px;
+  min-height: 550px;
+  margin: 3rem 2rem 3rem 2rem;
+  padding: 10px 1rem 10px 1rem;
+  border-radius: 25px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.24);
+}
+
+/* 카드 전체 크기 */
+.card {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  width: 600px;
+  height: 450px;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+/* 영화사진 */
+.movieImage {
+  display: flex;
+  width: 350px;
+  height: 450px;
+  border-radius: 15px;
+}
+
+/* 영화 박스 글자부분 */
+.postBody {
+  display: flex;
+  flex-direction: column;
+  width: 350;
+  height: 400;
+  padding: 10px;
+}
+
+/* 영화 제목 */
+
+.movieName {
+  display: flex;
+  font-size: larger;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+}
+
+/* 영화 요약 */
+.movieContents {
+  display: flex;
+  font-size: large;
+  line-height: 1.6rem;
+  padding: 1rem 0 1rem 0;
+}
+
+/* 평점 */
+
+.movieValues {
+  display: inline-flex;
+  font-size: 1.5rem;
+  justify-content: end;
+  padding-top: 2rem;
+}
+
+/* 개봉일자 */
+.releaseDate {
+  display: inline-flex;
+  justify-content: end;
+  padding: 1rem 0 1rem 0;
+}
