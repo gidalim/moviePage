@@ -8,7 +8,6 @@ header {
   font-size: 30px;
   font-style: inherit;
   color: #00668c;
-
 }
 
 #refresh_button {
@@ -17,12 +16,10 @@ header {
   align-items: center;
 }
 
-
 body {
   background-color: #f5f4f1;
   width: 100vw;
   height: 80vh;
-
 }
 
 section {
@@ -30,34 +27,36 @@ section {
   justify-content: space-evenly;
 }
 
-/* 사진이 들어갈 구역 */
-
-
 /* 하단부 copyright */
 footer {
-
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-end;
-
+  padding: 0 1rem 1rem 0;
 }
 
-
-/* 검색란 */
-.movieSearch {
+/* 검색헤더 */
+.movieHeader {
   display: flex;
   background-color: #313d44;
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: 50px;
+  height: 3rem;
 }
 
+/* 영화 검색란 */
+#searchMovie {
+  display: flex;
+  width: 300px;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+}
 
 /* 영화가 들어갈 메인 구역 */
 #movieContainer {
   width: 2000px;
-
 }
 
 .moviebox {
@@ -65,10 +64,7 @@ footer {
   flex-wrap: wrap;
   width: 2000px;
   justify-content: space-around;
-
 }
-
-
 
 /* 카드 메인 틀 */
 .postbox {
@@ -96,11 +92,11 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 500;
-  height: 600;
   border-radius: 15px;
-
-
+  width: 600px;
+  height: 450px;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 /* 영화사진 */
@@ -118,9 +114,7 @@ footer {
   width: 350;
   height: 400;
   padding: 10px;
-
 }
-
 
 /* 영화 제목 */
 
@@ -129,39 +123,30 @@ footer {
   font-size: larger;
   justify-content: center;
   align-items: center;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
 }
-
 
 /* 영화 요약 */
 .movieContents {
   display: flex;
   font-size: large;
-
+  line-height: 1.6rem;
+  padding: 1rem 0 1rem 0;
 }
 
 /* 평점 */
 
 .movieValues {
   display: inline-flex;
-  font-size: 20px;
+  font-size: 1.5rem;
   justify-content: end;
-
+  padding-top: 2rem;
 }
 
 /* 개봉일자 */
 .releaseDate {
   display: inline-flex;
   justify-content: end;
-
-}
-
-/* 영화 검색란 */
-#searchMovie {
-  display: flex;
-  width: 300px;
-  height: 30px;
-  justify-content: center;
-  align-items: center;
-
-
+  padding: 1rem 0 1rem 0;
 }
